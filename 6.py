@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
+def main(n):
+    sum_sqrt = sum([i**2 for i in range(n + 1)])
+    sqrt_sum = sum([i for i in range(n + 1)]) ** 2
+    return sqrt_sum - sum_sqrt
 
-sum1 = 0
-sum2 = 0
-for i in range(101):
-    sum1 += i**2
-    sum2 += i
-    
-odp = -sum1 + (sum2**2)
-print(odp) 
+
+if __name__ == "__main__":
+    print(main(100))

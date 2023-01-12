@@ -1,39 +1,26 @@
-# -*- coding: utf-8 -*-
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, int(number**0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
 
 
-number = 600851475143
+def main(n):
+    if is_prime(n):
+        return n
+    list_prime = []
+    for i in range(2, int(n / 2) + 1):
+        if is_prime(i) and n % i == 0:
+            list_prime.append(i)
+        check = 1
+        for p in list_prime:
+            check *= p
+        if check == n:
+            break
+    return list_prime[-1]
 
-dzielnik = 2
 
-lista_pierwszych = []
-
-while dzielnik < number/2:
-    lista_pom = []
-    for i in range(1,int(dzielnik**(0.5))+1):
-        if dzielnik%i == 0:
-            lista_pom.append(i)
-    if len(lista_pom) == 1:
-        if number%dzielnik == 0:
-            lista_pierwszych.append(dzielnik)
-            spr = 1
-            for j in lista_pierwszych:
-                spr *= j
-            if spr == number:
-                break
-            print(dzielnik, lista_pierwszych)
-            
-    dzielnik += 1
-    
-print(spr, dzielnik, lista_pierwszych)
-
-number = 297058020
-prim = 2
-
-while number > 1:
-    if number % prim == 0:
-        number /= prim
-    else:
-        prim += 1
-
-print(prim)
-
+if __name__ == "__main__":
+    print(main(600851475143))

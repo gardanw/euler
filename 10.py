@@ -1,19 +1,19 @@
-# -*- coding: utf-8 -*-
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, int(number**0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
 
 
-pierwsze = []
-liczba = 2
-while liczba != 2000000:
-    lista_pom = []
-    flaga = True
-    for i in range(2,int(liczba**(0.5))+1):
-        if liczba%i != 0:
-            continue
-        else:
-            flaga = False
-            break
-    if flaga:
-        pierwsze.append(liczba)
-    liczba += 1
-        
-print(sum(pierwsze))
+def main(n):
+    primes = []
+    for i in range(n):
+        if is_prime(i):
+            primes.append(i)
+    return sum(primes)
+
+
+if __name__ == "__main__":
+    print(main(2_000_000))

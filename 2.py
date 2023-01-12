@@ -1,17 +1,36 @@
-# -*- coding: utf-8 -*-
+def cache_fibo(func):
+    cache = {}
 
-lista = [1,2]
+    def cache_number(*args, **kwargs):
+        if args in cache:
+            return cache[args]
+        else:
+            val = func(*args, **kwargs)
+            cache[args] = val
+            return val
 
-old1 = 1
-old2 = 2
-new = old1 + old2
+    return cache_number
 
 
-while new < 4000000:
-    if new%2 == 0:
-        lista.append(new)
-    old1 = old2
-    old2 = new
-    new = old1 + old2
-    
-print(lista, new, old1, old2, sum(lista)-1)
+@cache_fibo
+def fibo(n):
+    if n <= 2:
+        return n
+    elif n > 2:
+        return fibo(n - 1) + fibo(n - 2)
+
+
+def main(n):
+    n_fib = 1
+    val = fibo(n_fib)
+    sum_val = 0
+    while val < n:
+        if val % 2 == 0:
+            sum_val += val
+        n_fib += 1
+        val = fibo(n_fib)
+    return sum_val
+
+
+if __name__ == "__main__":
+    print(main(4_000_000))

@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
+def main(n):
+    for a in range(1, n - 2):
+        for b in range(a, n - 1):
+            for c in range(b, n):
+                if a + b + c == n and a**2 + b**2 == c**2:
+                    return a * b * c
 
 
-n = 1
-m = 2
-flaga = True
-lista = []
-while flaga:
-    for i in range(500):
-        for j in range(500): 
-            for c in range(500):
-                if i + j + c == 1000 and i**2 + j**2 == c**2:
-                    lista.append((i,j,c))
-                    break
-    break
-    
-print(lista)
+if __name__ == "__main__":
+    print(main(1000))

@@ -1,15 +1,21 @@
-# -*- coding: utf-8 -*-
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, int(number**0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
 
 
-pierwsze = []
-liczba = 2
-while len(pierwsze) != 10001:
-    lista_pom = []
-    for i in range(1,int(liczba**(0.5))+1):
-        if liczba%i == 0:
-            lista_pom.append(i)
-    if len(lista_pom) == 1:
-        pierwsze.append(liczba)
-    liczba += 1
-        
-print(len(pierwsze), pierwsze[-1])
+def main(n):
+    prime = []
+    num = 2
+    while len(prime) != n:
+        if is_prime(num):
+            prime.append(num)
+        num += 1
+    return prime[-1]
+
+
+if __name__ == "__main__":
+    print(main(10001))
