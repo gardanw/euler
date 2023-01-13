@@ -1,43 +1,35 @@
-# -*- coding: utf-8 -*-
-kale = {2:28, 7:31}
-for i in range(12):
-    if i < 6:
-        if (i+1)%2 == 0 and i+1 not in kale:
-            kale[i+1] = 30
-        elif (i+1)%2 != 0 and i+1 not in kale:
-            kale[i+1] = 31
-    else:
-        if (i+1)%2 == 0 and i+1 not in kale:
-            kale[i+1] = 31
-        elif (i+1)%2 != 0 and i+1 not in kale:
-            kale[i+1] = 30
-#for i in range(1,13):
-#    print(kale[i])
-sun = 0
-rok = 1
-i = 1
-pom = 0
-while i < 1200:
-    if i%12 == 0:
-        rok += 1
-    for j in range(1,13):
-        if j == 2 and rok%4 == 0:
-#            print(((kale[j]+1)%7+ pom)%7)
-            if ((kale[j]+1)%7 + pom)%7 == 0:
-                pom += (kale[j]+1)%7
-                pom = pom%7
-                sun += 1
-            else:
-                pom += (kale[j]+1)%7
-                pom = pom%7
-        else:
-#            print(((kale[j])%7+ pom)%7)
-            if ((kale[j])%7 + pom)%7 == 0:
-                pom += kale[j]%7
-                pom = pom%7
-                sun += 1
-            else:
-                pom += kale[j]%7
-                pom = pom%7
-        i += 1
-print(sun)
+cal = {
+    1: 31,
+    2: 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31,
+}
+
+
+def main(year):
+    wday = 1
+    sunday = 0
+    for y in range(1900, year + 1):
+        for m in range(1, 13):
+            if wday == 0:
+                sunday += 1
+            if m == 2:
+                if (y % 100 != 0 and y % 4 == 0) or (y % 100 == 0 and y % 400 == 0):
+                    print(y, m, wday, "p")
+                    wday = (wday + (cal[m] + 1) % 7) % 7
+                    continue
+            print(y, m, wday)
+            wday = (wday + cal[m] % 7) % 7
+    return sunday
+
+
+if __name__ == "__main__":
+    print(main(2000) - main(1900))

@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-lista = [2]
-while len(lista) != 20:
-    x = sum(lista)
-    y = lista[-1]*2
-    print(x,y, (x+y))
-    lista.append((x+y))
-print(len(lista),lista[-1])
+from math import factorial
 
-z = 1
-for i in range(20):
-    z *= (40 - i)
-print(z)
+
+def main(n):
+    return factorial(2 * n) / (factorial(n) * factorial(n))
+
+
+if __name__ == "__main__":
+    print(main(20))

@@ -1,20 +1,28 @@
-liczba = 10**6
-lista = []
-while liczba > 1:
-    ciag = []
-    p_ciagu = liczba
-    ciag.append(p_ciagu)
-    while p_ciagu > 1:
-        if p_ciagu % 2 == 0:
-            p_ciagu = p_ciagu/2
-        else:
-            p_ciagu = 3*p_ciagu + 1
-            ciag.append(p_ciagu)
-    lista.append(ciag)
-    if liczba % 1000 == 0:
-        print(liczba)
-    liczba -= 1
-lista_pom = []
-for i in lista:
-    lista_pom.append(len(i))
-print(lista[lista_pom.index(max(lista_pom))])
+def next_in_seq(n):
+    if n % 2 == 0:
+        return n / 2
+    else:
+        return 3 * n + 1
+
+
+def gen_seq(start):
+    seq = [start]
+    while seq[-1] != 1:
+        seq.append(next_in_seq(seq[-1]))
+    return seq
+
+
+def main(n):
+    longest = 1
+    start_n = 0
+    for i in range(n, 1, -1):
+        new_seq = gen_seq(i)
+        if len(new_seq) >= longest:
+            longest = len(new_seq)
+            start_n = i
+    return start_n
+
+
+if __name__ == "__main__":
+    n = 10**6
+    print(main(n))
