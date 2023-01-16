@@ -1,18 +1,20 @@
-import numpy as np
+def main(n, start=1):
+    spiral = [start]
+    step = 2
+    while spiral[-1] != n * n:
+        control = 0
+        for i in range(spiral[-1], n * n + 1, step):
+            if i in spiral:
+                continue
+            else:
+                spiral.append(i)
+                control += 1
+            if control == 4:
+                break
+        step += 2
 
-n = 1001
-lista = [1]
-krok = 2
-while lista[-1] != n * n:
-    control = 0
-    for i in range(lista[-1], n * n + 1, krok):
-        if i in lista:
-            continue
-        else:
-            lista.append(i)
-            control += 1
-        if control == 4:
-            break
-    krok += 2
+    return sum(spiral)
 
-print(sum(lista))
+
+if __name__ == "__main__":
+    print(main(1001))

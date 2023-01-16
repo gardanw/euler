@@ -1,11 +1,32 @@
 # -*- coding: utf-8 -*-
-f1 = 1
-f2 = 1
-f3 = 2
-i = 3
-while len(str(f3)) < 1000:
-    f1 = f2
-    f2 = f3
-    f3 = f1 + f2
-    i += 1
-print(i)
+def cache_fibo(func):
+    cache = {}
+
+    def cache_number(*args, **kwargs):
+        if args in cache:
+            return cache[args]
+        else:
+            val = func(*args, **kwargs)
+            cache[args] = val
+            return val
+
+    return cache_number
+
+
+@cache_fibo
+def fibo(n):
+    if n <= 2:
+        return 1
+    elif n > 2:
+        return fibo(n - 1) + fibo(n - 2)
+
+
+def main(len_d):
+    n = 1
+    while len(str(fibo(n))) < len_d:
+        n += 1
+    return n
+
+
+if __name__ == "__main__":
+    print(main(1000))
